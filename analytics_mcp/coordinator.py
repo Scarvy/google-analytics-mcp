@@ -26,28 +26,28 @@ from fastmcp.tools.base import Tool
 
 from analytics_mcp.tools.admin.info import (
     get_account_summaries,
-    list_google_ads_links,
     get_property_details,
+    list_google_ads_links,
     list_property_annotations,
 )
-from analytics_mcp.tools.reporting.core import (
-    run_report,
-    _run_report_description,
+from analytics_mcp.tools.reporting.conversions import (
+    _run_conversions_report_description,
+    run_conversions_report,
 )
-from analytics_mcp.tools.reporting.realtime import (
-    run_realtime_report,
-    _run_realtime_report_description,
+from analytics_mcp.tools.reporting.core import (
+    _run_report_description,
+    run_report,
+)
+from analytics_mcp.tools.reporting.funnel import (
+    _run_funnel_report_description,
+    run_funnel_report,
 )
 from analytics_mcp.tools.reporting.metadata import (
     get_custom_dimensions_and_metrics,
 )
-from analytics_mcp.tools.reporting.funnel import (
-    run_funnel_report,
-    _run_funnel_report_description,
-)
-from analytics_mcp.tools.reporting.conversions import (
-    run_conversions_report,
-    _run_conversions_report_description,
+from analytics_mcp.tools.reporting.realtime import (
+    _run_realtime_report_description,
+    run_realtime_report,
 )
 
 _CLIENT_ID = os.environ.get("ANALYTICS_MCP_OAUTH_CLIENT_ID")
@@ -74,18 +74,14 @@ mcp.add_tool(Tool.from_function(list_google_ads_links))
 mcp.add_tool(Tool.from_function(get_property_details))
 mcp.add_tool(Tool.from_function(list_property_annotations))
 mcp.add_tool(Tool.from_function(get_custom_dimensions_and_metrics))
-mcp.add_tool(
-    Tool.from_function(run_report, description=_run_report_description())
-)
+mcp.add_tool(Tool.from_function(run_report, description=_run_report_description()))
 mcp.add_tool(
     Tool.from_function(
         run_realtime_report, description=_run_realtime_report_description()
     )
 )
 mcp.add_tool(
-    Tool.from_function(
-        run_funnel_report, description=_run_funnel_report_description()
-    )
+    Tool.from_function(run_funnel_report, description=_run_funnel_report_description())
 )
 
 mcp.add_tool(
