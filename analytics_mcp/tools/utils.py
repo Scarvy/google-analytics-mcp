@@ -14,7 +14,7 @@
 
 """Common utilities used by the MCP server."""
 
-from typing import Any, Dict
+from typing import Any
 
 import proto
 
@@ -34,17 +34,17 @@ def construct_property_rn(property_value: int | str) -> str:
                 property_num = int(numeric_part)
     if property_num is None:
         raise ValueError(
-            (
+            
                 f"Invalid property ID: {property_value}. "
                 "A valid property value is either a number or a string starting "
                 "with 'properties/' and followed by a number."
-            )
+            
         )
 
     return f"properties/{property_num}"
 
 
-def proto_to_dict(obj: proto.Message) -> Dict[str, Any]:
+def proto_to_dict(obj: proto.Message) -> dict[str, Any]:
     """Converts a proto message to a dictionary."""
     return type(obj).to_dict(
         obj, use_integers_for_enums=False, preserving_proto_field_name=True

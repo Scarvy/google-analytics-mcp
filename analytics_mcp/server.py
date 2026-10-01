@@ -20,7 +20,7 @@ import os
 import sys
 import traceback
 
-import analytics_mcp.coordinator as coordinator
+from analytics_mcp import coordinator
 
 
 def run_server() -> None:

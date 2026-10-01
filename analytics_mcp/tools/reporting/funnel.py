@@ -15,8 +15,11 @@
 """Tools for running funnel reports using the Data API (Alpha)."""
 
 import asyncio
-from typing import Any, Dict, List
+from typing import Any
 
+from google.analytics import data_v1alpha
+
+from analytics_mcp.tools.client import create_data_api_alpha_client
 from analytics_mcp.tools.reporting.metadata import (
     get_date_ranges_hints,
     get_funnel_steps_hints,
@@ -25,8 +28,6 @@ from analytics_mcp.tools.utils import (
     construct_property_rn,
     proto_to_dict,
 )
-from analytics_mcp.tools.client import create_data_api_alpha_client
-from google.analytics import data_v1alpha
 
 
 def _run_funnel_report_description() -> str:
@@ -84,13 +85,13 @@ def _run_funnel_report_description() -> str:
 
 async def run_funnel_report(
     property_id: int | str,
-    funnel_steps: List[Dict[str, Any]],
-    date_ranges: List[Dict[str, str]] = None,
-    funnel_breakdown: Dict[str, str] = None,
-    funnel_next_action: Dict[str, str] = None,
-    segments: List[Dict[str, Any]] = None,
+    funnel_steps: list[dict[str, Any]],
+    date_ranges: list[dict[str, str]] = None,
+    funnel_breakdown: dict[str, str] = None,
+    funnel_next_action: dict[str, str] = None,
+    segments: list[dict[str, Any]] = None,
     return_property_quota: bool = False,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Run a Google Analytics Data API funnel report.
 
     See the funnel report guide at

@@ -15,20 +15,21 @@
 """Tools for gathering Google Analytics account and property information."""
 
 import asyncio
-from typing import Any, Dict, List
+from typing import Any
 
+from google.analytics import admin_v1alpha, admin_v1beta
+
+from analytics_mcp.tools.client import (
+    create_admin_alpha_api_client,
+    create_admin_api_client,
+)
 from analytics_mcp.tools.utils import (
     construct_property_rn,
     proto_to_dict,
 )
-from analytics_mcp.tools.client import (
-    create_admin_api_client,
-    create_admin_alpha_api_client,
-)
-from google.analytics import admin_v1beta, admin_v1alpha
 
 
-async def get_account_summaries() -> List[Dict[str, Any]]:
+async def get_account_summaries() -> list[dict[str, Any]]:
     """Retrieves information about the user's Google Analytics accounts and properties."""
 
     def _sync_call():
@@ -38,7 +39,7 @@ async def get_account_summaries() -> List[Dict[str, Any]]:
     return await asyncio.to_thread(_sync_call)
 
 
-async def list_google_ads_links(property_id: int | str) -> List[Dict[str, Any]]:
+async def list_google_ads_links(property_id: int | str) -> list[dict[str, Any]]:
     """Returns a list of links to Google Ads accounts for a property.
 
     Args:
@@ -59,7 +60,7 @@ async def list_google_ads_links(property_id: int | str) -> List[Dict[str, Any]]:
     return await asyncio.to_thread(_sync_call)
 
 
-async def get_property_details(property_id: int | str) -> Dict[str, Any]:
+async def get_property_details(property_id: int | str) -> dict[str, Any]:
     """Returns details about a property.
     Args:
         property_id: The Google Analytics property ID. Accepted formats are:
@@ -80,7 +81,7 @@ async def get_property_details(property_id: int | str) -> Dict[str, Any]:
 
 async def list_property_annotations(
     property_id: int | str,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Returns annotations for a property.
 
     Annotations are a feature that allows you to leave notes on GA4 for specific dates or periods.

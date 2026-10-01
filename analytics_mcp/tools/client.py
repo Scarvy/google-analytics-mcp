@@ -22,10 +22,10 @@ from unittest.mock import patch
 
 import google.auth
 from google.analytics import (
-    admin_v1beta,
-    data_v1beta,
     admin_v1alpha,
+    admin_v1beta,
     data_v1alpha,
+    data_v1beta,
 )
 from google.api_core.gapic_v1.client_info import ClientInfo
 

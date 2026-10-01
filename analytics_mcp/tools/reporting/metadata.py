@@ -15,15 +15,16 @@
 """Metadata to provide context and hints for reporting tools."""
 
 import asyncio
-from typing import Any, Dict, List
+from typing import Any
 
+from google.analytics import data_v1alpha, data_v1beta
+
+from analytics_mcp.tools.client import create_data_api_client
 from analytics_mcp.tools.utils import (
     construct_property_rn,
     proto_to_dict,
     proto_to_json,
 )
-from analytics_mcp.tools.client import create_data_api_client
-from google.analytics import data_v1alpha, data_v1beta
 
 
 def get_date_ranges_hints():
@@ -476,7 +477,7 @@ def get_order_bys_hints():
 
 async def get_custom_dimensions_and_metrics(
     property_id: int | str,
-) -> Dict[str, List[Dict[str, Any]]]:
+) -> dict[str, list[dict[str, Any]]]:
     """Returns the property's custom dimensions and metrics.
 
     Args:
