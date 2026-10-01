@@ -74,14 +74,18 @@ mcp.add_tool(Tool.from_function(list_google_ads_links))
 mcp.add_tool(Tool.from_function(get_property_details))
 mcp.add_tool(Tool.from_function(list_property_annotations))
 mcp.add_tool(Tool.from_function(get_custom_dimensions_and_metrics))
-mcp.add_tool(Tool.from_function(run_report, description=_run_report_description()))
+mcp.add_tool(
+    Tool.from_function(run_report, description=_run_report_description())
+)
 mcp.add_tool(
     Tool.from_function(
         run_realtime_report, description=_run_realtime_report_description()
     )
 )
 mcp.add_tool(
-    Tool.from_function(run_funnel_report, description=_run_funnel_report_description())
+    Tool.from_function(
+        run_funnel_report, description=_run_funnel_report_description()
+    )
 )
 
 mcp.add_tool(
